@@ -44,7 +44,7 @@ def intent_callback(hermes, intent_message):
     elif intentname == user_intent("clearTodoList"):
         result_sentence = todolist.try_clear()
         if result_sentence == "empty":
-            result_sentence = "Die Todo-Liste ist schon leer."
+            result_sentence = "Die Tuhduh-Liste ist schon leer."
             hermes.publish_end_session(intent_message.session_id, result_sentence)
         else:
             todolist.wanted_intents = [user_intent("confirmTodoList")]
@@ -72,7 +72,7 @@ def intent_not_recognized_callback(hermes, intent_message):
     hermes.configure_dialogue(configure_message)
     todolist.wanted_intents = []
     hermes.publish_end_session({'sessionId': intent_message.session_id,
-                                'text': "Die Todo-Liste wurde nicht gelöscht."})
+                                'text': "Die Tuhduh-Liste wurde nicht gelöscht."})
 
 
 if __name__ == "__main__":
