@@ -34,8 +34,8 @@ else
     >&2 echo "Cannot find Python 3. Please install it."
 fi
 
-if [ ! -f ./.shoppinglist ]
+if [ ! -f ./.todolist ]
 then
-    touch .shoppinglist
-    #sudo chown _snips-skills .shoppinglist
+    touch .todolist
+    #sudo chown _snips-skills .todolist
 fi
