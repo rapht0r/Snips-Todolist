@@ -35,7 +35,7 @@ class TodoList:
                 items_str += "{} ".format(added_items[-1])
                 word_pl_sg = "wurde"
             first_str = items_str + random.choice(["{} hinzugefügt".format(word_pl_sg),
-                                                   "{} auf die Tuhduh-liste geschrieben".format(word_pl_sg)])
+                                                   "{} auf die Tuuduu-liste geschrieben".format(word_pl_sg)])
             if not dublicate_items:
                 first_str += "."
             else:
@@ -49,8 +49,8 @@ class TodoList:
             else:
                 items_str += "{} ".format(dublicate_items[-1])
                 word_pl_sg = "ist"
-            second_str = items_str + random.choice(["{} schon auf der Tuhduh-Liste.".format(word_pl_sg),
-                                                    "{} auf der Tuhduh-Liste schon vorhanden.".format(word_pl_sg)])
+            second_str = items_str + random.choice(["{} schon auf der Tuuduu-Liste.".format(word_pl_sg),
+                                                    "{} auf der Tuuduu-Liste schon vorhanden.".format(word_pl_sg)])
             response += second_str
         self.save_todolist()
         return response
@@ -71,7 +71,7 @@ class TodoList:
                 items_str += "{} ".format(removed_items[-1])
                 word_pl_sg = "wurde"
             first_str = items_str + random.choice(["{} entfernt".format(word_pl_sg),
-                                                   "{} von der Tuhduh-liste entfernt".format(word_pl_sg)])
+                                                   "{} von der Tuuduu-liste entfernt".format(word_pl_sg)])
             if not notlist_items:
                 first_str += "."
             else:
@@ -86,7 +86,7 @@ class TodoList:
                 items_str += "{} ".format(notlist_items[-1])
                 word_pl_sg = "ist"
             second_str = items_str + random.choice(["{} nicht auf der Liste.".format(word_pl_sg),
-                                                    "{} auf der Tuhduh-liste nicht vorhanden.".format(word_pl_sg)])
+                                                    "{} auf der Tuuduu-liste nicht vorhanden.".format(word_pl_sg)])
             response += second_str
         self.save_todolist()
         return response
@@ -94,17 +94,17 @@ class TodoList:
     def is_item(self, intentmessage):
         item = intentmessage.slots.item.first().value
         if item in self.todolist:
-            response = "Ja, {item} steht auf der Tuhduh-liste.".format(item=str(item))
+            response = "Ja, {item} steht auf der Tuuduu-liste.".format(item=str(item))
         else:
-            response = "Nein, {item} ist nicht auf der Tuhduh-liste.".format(item=str(item))
+            response = "Nein, {item} ist nicht auf der Tuuduu-liste.".format(item=str(item))
         return response
 
     def try_clear(self):
         if len(self.todolist) > 1:
-            response = "Die Tuhduh-liste enthält noch {num} Elemente." \
+            response = "Die Tuuduu-liste enthält noch {num} Elemente." \
                        " Bist du dir sicher?".format(num=len(self.todolist))
         elif len(self.todolist) == 1:
-            response = "Die Tuhduh-liste enthält noch ein Element. Bist du dir sicher?"
+            response = "Die Tuuduu-liste enthält noch ein Element. Bist du dir sicher?"
         else:
             response = "empty"  # Error: Todolist is already empty - no dialogue start
         return response
@@ -113,26 +113,26 @@ class TodoList:
         if intentmessage.slots.answer.first().value == "yes":
             self.todolist = []
             self.save_todolist()
-            return "Die Tuhduh-liste wurde geleert."
+            return "Die Tuuduu-liste wurde geleert."
         else:
-            return "Die Tuhduh-liste wurde nicht geleert."
+            return "Die Tuuduu-liste wurde nicht geleert."
 
     def show(self):
         if len(self.todolist) > 1:
             todolist_str = ""
             for item in self.todolist[:-1]:
                 todolist_str = todolist_str + str(item) + ", "
-            response = "Die Tuhduh-liste enthält {items}und {last}.".format(
+            response = "Die Tuuduu-liste enthält {items}und {last}.".format(
                 items=todolist_str, last=self.todolist[-1])
         elif len(self.todolist) == 1:
-            response = "Die Tuhduh-liste enthält nur {item}.".format(item=self.todolist[0])
+            response = "Die Tuuduu-liste enthält nur {item}.".format(item=self.todolist[0])
         else:  # If todolist is empty
-            response = "Die Tuhduh-liste ist leer."
+            response = "Die Tuuduu-liste ist leer."
         return response
 
     def send(self):
         if len(self.todolist) == 0:
-            return "Die Tuhduh-liste ist leer. Eine Email ist daher überflüssig."
+            return "Die Tuuduu-liste ist leer. Eine Email ist daher überflüssig."
 
         try:
             email_dict = literal_eval(self.config['secret']['email_data'])
